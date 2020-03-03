@@ -37,6 +37,3 @@ console.log(students.startWith('M').sort());
 console.log(students.sort().getFirst(4));
 console.log(students.startWith('M').sort().getFirst(2));
 console.log(students.get());
-
-
-
