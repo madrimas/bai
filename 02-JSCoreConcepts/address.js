@@ -14,16 +14,16 @@ ul. Długa 15
 POLAND
 */
 
-let nonFormatted = 
-title + " " + name + " " + surname + "\n"
-+ "ul. " + street + "\n" 
-+ zip + " " + city + "\n" 
-+ country.toUpperCase();
+let nonFormatted =
+    title + " " + name + " " + surname + "\n"
+    + "ul. " + street + "\n"
+    + zip + " " + city + "\n"
+    + country.toUpperCase();
 
-let formatted = 
+let formatted =
 `${title} ${name} ${surname} 
 ul. ${street} 
-${city} ${zip} 
+${zip} ${city} 
 ${country.toUpperCase()}`
 
 console.log(nonFormatted);

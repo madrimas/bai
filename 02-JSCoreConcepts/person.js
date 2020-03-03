@@ -1,22 +1,22 @@
 class Person {
-    constructor(name, surname){
+    constructor(name, surname) {
         this.name = name;
         this.surname = surname;
     }
 
-    show(){
-        console.log(`${name} ${surname.toUpperCase()}`)
+    show() {
+        console.log(`${this.name} ${this.surname.toUpperCase()}`)
     }
 
-    showInitials(){
-        console.log(`${name.charAt(0)}.${surname.charAt(0)}.`)
+    showInitials() {
+        console.log(`${this.name.charAt(0)}.${this.surname.charAt(0)}.`)
     }
 }
 
-let janek = Person("Jan", "Nowak");
-console.log(janek.show());
-console.log(janek.showInitials());
+let janek = new Person("Jan", "Nowak");
+janek.show();
+janek.showInitials();
 
-let me = Person("Tomek", "Zapiórkowski");
-console.log(me.show());
-console.log(me.showInitials());
+let me = new Person("Tomek", "Zapiórkowski");
+me.show();
+me.showInitials();

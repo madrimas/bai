@@ -5,24 +5,27 @@ class Students {
         this.names = names;
     }
 
-    startWith(letter){
-        startsWith = [];
-        names.forEach(item => {if(item.charAt(0) == letter){startsWith.push(item)}} )
-        return startsWith;// names (array) which starts with the letter
+    startWith(letter) {
+        let startsWith = [];
+        this.names.forEach(item => { if (item.charAt(0) == letter) { startsWith.push(item) } });
+        return new Students(startsWith);// names (array) which starts with the letter
     }
 
     sort() {
-        return names.sort(); // names (array) in alphabetical order 
+        let sortedNames = [];
+        this.names.forEach(item => sortedNames.push(item));
+        sortedNames.sort();
+        return new Students(sortedNames); // names (array) in alphabetical order 
     }
 
     get() {
-        return names; // names (array) in natural order
+        return new Students(this.names); // names (array) in natural order
     }
 
     getFirst(n) {
-        firstNames = [];
-        arr.forEach((item, index) => {if(index<n){firstNames.push(item)}} )
-        return firstNames; // get first 'n' names (array) 
+        let firstNames = [];
+        this.names.forEach((item, index) => { if (index < n) { firstNames.push(item) } });
+        return new Students(firstNames); // get first 'n' names (array) 
     }
 }
 
