@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Pink Floyd</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<h1>Another Brick in the Wall</h1>
-		<h3>Pink Floyd</h3>
-		<p>We don't need no education<br>
+
+<head>
+	<title>Pink Floyd</title>
+	<meta charset="UTF-8">
+</head>
+
+<body ondblclick="setBackgroundColour('#FFFF00')">
+	<h1 onclick="addString(this, 'Part 2')">Another Brick in the Wall</h1>
+	<h3 onclick="showDescription()">Pink Floyd</h3>
+	<p id="lyrics" onclick="toItalic()" oncopy="showCopyrightPopup()">We don't need no education<br>
 		We don't need no thought control<br>
 		No dark sarcasm in the classroom<br>
 		Teachers leave them kids alone<br>
 		Hey! Teachers! Leave them kids alone<br>
 		All in all it's just another brick in the wall<br>
 		All in all you're just another brick in the wall</p>
-		
-		<p style="visibility: hidden;">Pink Floyd were an English rock band formed in London.<br>
+
+	<p id="description" style="visibility: hidden;" onclick="showPhoto(this)">Pink Floyd were an English rock band formed in London.<br>
 		They achieved international acclaim with their progressive<br>
 		and psychedelic music.</p>
-		
-		<script>
-			// a JavaScript code here ...
-			
-		</script>
-	</body>
+
+	<script>
+		function addString(element, string) {
+			element.innerHTML = element.innerHTML + ' ' + string;
+		}
+
+		function showDescription() {
+			document.getElementById("description").style.visibility = '';
+		}
+
+		function toItalic() {
+			document.getElementById("lyrics").style.fontStyle = "italic";
+		}
+
+		function setBackgroundColour(colour) {
+			document.body.style.backgroundColor = colour;
+		}
+
+		function showCopyrightPopup() {
+			alert('Copyright © All rights reserved');
+		}
+
+		function showPhoto(element) {
+			if (document.getElementById("photo") != null) {
+				return;
+			}
+
+			let image = document.createElement("img");
+			image.id = "photo";
+			image.src = "https://upload.wikimedia.org/wikipedia/en/d/d6/Pink_Floyd_-_all_members.jpg";
+			element.parentNode.insertBefore(image, element.nextSibling);
+		}
+
+	</script>
+</body>
+
 </html>

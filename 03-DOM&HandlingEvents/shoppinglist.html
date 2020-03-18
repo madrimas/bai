@@ -4,13 +4,15 @@
 <head>
     <title>Shopping List</title>
     <meta charset="UTF-8">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
     <h1>Shopping List</h1>
     <p>
         New item: <input type="text" name="item">
-        <button type="button">Add</button>
+        <button type="button" onclick="addItemToList()">Add</button>
     </p>
     <h3>List of items</h3>
     <ol>
@@ -20,9 +22,35 @@
     </ol>
 
     <script>
-    	// a JavaScript code here ...
+        function addItemToList() {
+            let input = document.getElementsByName("item")[0].value;
+            let shoppingList = document.getElementsByTagName("li");
+
+            if (input === "") {
+                return;
+            }
+
+            let lastItem = shoppingList[shoppingList.length - 1];
+            let newItem = document.createElement("li");
+            newItem.innerText = `${input}`;
+            document.getElementsByName("item")[0].value = "";
+
+            if(lastItem === undefined){
+                document.getElementsByTagName("ol")[0].appendChild(newItem);
+            } else {
+                lastItem.parentNode.insertBefore(newItem, lastItem.nextSibling);
+            }
+        }
+
+        $(document).on(
+            'dblclick',
+            'li',
+            function () {
+                $(this).remove();
+            });
 
     </script>
+
 </body>
 
 </html>
