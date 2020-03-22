@@ -18,12 +18,16 @@
 				xhr.open(method, URL);
 				xhr.send();
 			}
-			function display(r){
-				console.log("Request state:", r.readyState);
-				console.log("Status:", r.status);
-				console.log("Status text:", r.statusText);
-				console.log("-----");
+			
+			function display(r) {
+				if (r.readyState == 4 && r.status == 200) {
+					console.log("Request state:", r.readyState);
+					console.log("Status:", r.status);
+					console.log("Status text:", r.statusText);
+					console.log("-----");
+				}
 			};
+
 		</script>
 
 	</body>

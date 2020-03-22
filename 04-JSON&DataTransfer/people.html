@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>People</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+        <h1>People</h1>
+    
+        <p id="people"></p>
+        
+        <input type="button" onclick="showPersonalData()" value="Show personal data">
+        
+        <script>
+            function showPersonalData() {
+                let request = new XMLHttpRequest();
+                request.open('GET', 'people.json'); //open with Live Server
+                request.send();
+
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4 && request.status == 200) {
+                        let people = JSON.parse(request.responseText);
+                        let personalDataString = ``;
+                        for (let i = 0; i < people.length; i++) {
+                            let person = people[i];
+                            personalDataString += `${i + 1}. ${person.name} ${person.surname.toUpperCase()}, ${person.country} <br>`;
+                        }
+
+                        document.getElementById(`people`).innerHTML = personalDataString;
+                    }
+                };
+            }
+
+        </script>
+
+	</body>
+</html>

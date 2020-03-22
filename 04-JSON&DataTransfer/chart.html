@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gold chart</title>
+    <meta charset="UTF-8">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+</head>
+
+<body>
+    <h1>Gold chart</h1>
+
+    <input type="button" onclick="showGoldChart()" value="Show gold price chart">
+
+    <div class="chart" style="position: relative; height:80vh; width:96vw">
+        <canvas id="goldPriceChart"></canvas>
+    </div>
+
+    <script>
+        function showGoldChart() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let json = JSON.parse(this.response);
+
+                    let labels = json.map(function (element) {
+                        return element.data;
+                    });
+
+                    let values = json.map(function (element) {
+                        return element.cena;
+                    });
+
+                    BuildChart(labels, values, "Gold price");
+                }
+            };
+            
+            xhttp.open("GET", "http://api.nbp.pl/api/cenyzlota/last/30/?format=json", false);
+            xhttp.send();
+        }
+
+        function BuildChart(labels, values, title) {
+            let data = {
+                labels: labels,
+                datasets: [{
+                    label: title, 
+                    data: values,
+                    backgroundColor: 'rgb(55, 167, 234)'
+                }],
+            };
+
+            let ctx = document.getElementById("goldPriceChart").getContext('2d');
+            let goldPriceChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'PLN'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Date'
+                            }
+                        }]
+                    },
+                }
+            });
+
+            return goldPriceChart;
+        }
+    </script>
+
+</body>
+
+</html>

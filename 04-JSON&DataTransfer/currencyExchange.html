@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Currency exchange rates</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+        <h1>Currency</h1>
+        
+		<p>EUR</p>
+        <p id="EUR"></p>
+        
+        <p>USD</p>
+        <p id="USD"></p>
+        
+        <p>GBP</p>
+		<p id="GBP"></p>
+        
+        <input type="button" onclick="showCurrencyExchangeRate()" value="Display currency exchange rates">
+        
+		<script>
+            function showCurrencyExchangeRate(){
+                showCurrencyExchangeRates('EUR');
+                showCurrencyExchangeRates('USD');
+                showCurrencyExchangeRates('GBP');
+            }
+
+			function showCurrencyExchangeRates(currencyCode) {
+				let request = new XMLHttpRequest();
+				request.open('GET', `http://api.nbp.pl/api/exchangerates/rates/C/${currencyCode}/`);
+				request.send();
+
+				request.onreadystatechange = function () {
+					if (request.readyState == 4 && request.status == 200) {
+						let currency = JSON.parse(request.responseText);
+                        let currencyValues = currency.rates[0];
+						document.getElementById(`${currencyCode}`).innerHTML =
+							`Currency: ${currency.currency} <br> Code: ${currency.code} <br> Buying rate: ${currencyValues.bid} <br> Selling rate: ${currencyValues.ask}`
+					}
+				};
+			}
+
+		</script>
+
+	</body>
+</html>
