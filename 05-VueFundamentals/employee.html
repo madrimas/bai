@@ -4,6 +4,22 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <div id="app">
+    <b>EMPLOYEE RECORD</b> <br>
+    Name 1: {{ name1 }} <br>
+    <span v-if="name2 != null && name2 != ''">
+      Name 2: {{ name2 }} <br>
+    </span>
+    Surname: {{ surname }} <br>
+    <span v-if="!foreigner">
+      Pesel: {{ pesel }} <br>
+    </span>
+    <span v-else>
+      Nationality: {{ nationality}} <br>
+    </span>
+    Address: {{ address }}
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -15,7 +31,7 @@
         nationality: 'Polish',
         pesel: '92021708229',
         address: 'ul. Szeroka 3, Kraków',
-    });
+    }});
   </script>
 
 </body>

@@ -1,9 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+    #table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 30%;
+      margin: auto;
+      padding: 10px;
+    }
+
+    .center {
+      text-align: center;
+    }
+  </style>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <div id="app">
+    <h4 class="center" >Films</h4>
+    <template>
+      <div class="table-responsive">
+          <table id="table" class="table-hover">
+              <thead>
+                  <tr>
+                      <th>Title</th>
+                      <th>Year</th>
+                      <th>Director</th>
+                      <th>Budget</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="item in films" :key="item.title">
+                      <td>{{ item.title }}</td>
+                      <td>{{ item.year }}</td>
+                      <td>{{ item.director }}</td>
+                      <td>${{ item.budget.toLocaleString() }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </template>
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -36,7 +76,7 @@
         ] 
         }
       }
-    });
+    );
   </script>
 </body>
 </html>

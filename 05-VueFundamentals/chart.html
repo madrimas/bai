@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .center {
+      text-align: center;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
 </head>
+
 <body>
+  <h2 class="center">Programming languages popularity</h2>
+
+  <div id="app">
+    <div class="chart-box">
+      <canvas id="languages-popularity-chart"></canvas>
+    </div>
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        films: [
+        languages: [
           {
             language: 'Python',
             popularity: 25.95
@@ -29,9 +46,49 @@
             language: 'Php',
             popularity: 7.37
           }
-        ] 
+        ]
+      },
+      computed: {
+        languageNames() {
+          return this.languages.map(element => element.language);
+        },
+        languagePopularity() {
+          return this.languages.map(element => element.popularity);
+        }
+      },
+      methods: {
+        createChart: (languageNames, languagePopularity) => {
+          let ctx = document.getElementById('languages-popularity-chart').getContext('2d');
+
+          let config = {
+            type: 'bar',
+            data: {
+              labels: languageNames,
+              datasets: [{
+                data: languagePopularity
+              }]
+            },
+            options: {
+              legend: false,
+              elements: {
+                rectangle: {
+                  backgroundColor: 'rgb(0,175,255)',
+                  borderColor: 'rgb(0,0,0)',
+                  borderWidth: 1
+                }
+              }
+            }
+          }
+
+          new Chart(ctx, config);
+        },
+      },
+      mounted() {
+        this.createChart(this.languageNames, this.languagePopularity);
       }
     });
+
   </script>
 </body>
+
 </html>

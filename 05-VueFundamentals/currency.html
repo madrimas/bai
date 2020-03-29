@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 60%;
+            margin: auto;
+            padding: 10px;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <template>
+            <div class="table-responsive">
+                <table id="table" class="table-hover">
+                    <thead>
+                        <tr>
+                            <th>Currency</th>
+                            <th>Code</th>
+                            <th>Mid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in exchangeRates">
+                            <td>{{ item.currency }}</td>
+                            <td>{{ item.code }}</td>
+                            <td>{{ item.mid }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                exchangeRates: []
+            },
+            computed: {
+                loadExchangeRates() {
+                    let request = new XMLHttpRequest();
+                    request.open('GET', 'http://api.nbp.pl/api/exchangerates/tables/b/?format=json', false);
+                    let exchangeRatesFromApi = [];
+                    request.onreadystatechange = () => {
+                        if (request.readyState === 4 && request.status === 200) {
+                            exchangeRatesFromApi = JSON.parse(request.responseText)[0].rates;
+                        }
+                    }
+                    request.send()
+
+                    return exchangeRatesFromApi;
+                }
+            },
+            mounted() {
+                this.exchangeRates = this.loadExchangeRates;
+            }
+        }
+        );
+    </script>
+</body>
+
+</html>

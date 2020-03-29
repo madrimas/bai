@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #app {
+      border: 1px solid black;
+      width: 20%;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .center {
+      text-align: center;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
+  <div id="app" class="center">
+    <b>{{ company.toUpperCase() }}</b> <br>
+    {{ address }} <br>
+    {{ postcode }} {{ city }} <br>
+    tel. {{ landline }}, {{ mobile }} <br>
+    <a v-bind:href="web">{{ web }}</a>
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -20,4 +43,5 @@
   </script>
 
 </body>
+
 </html>

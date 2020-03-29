@@ -7,7 +7,7 @@
   <div id="app">
     <h4>DO WYKONANIA</h4>
     <ol>
-      <li v-for="item in todo">
+      <li v-for="item in orderedTodo">
         {{ item }}
       </li>
     </ol>
@@ -22,6 +22,11 @@
           'Feed cat',
           'Pay cable bill',
           'Go shopping']
+      },
+      computed: {
+        orderedTodo() {
+          return this.todo.sort();
+        }
       }
     });
   </script>
