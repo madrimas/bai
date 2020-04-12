@@ -16,12 +16,12 @@
     var app = new Vue({
       el: '#app',
       data: {
-        weight: 0,
-        height: 0
+        weight: null,
+        height: null
       },
       computed: {
         bmi() {
-          return this.weight != 0 && this.height != 0 ?
+          return this.weight != null && this.height != null && this.weight != 0 && this.height != 0 ?
             (this.weight / Math.pow((this.height / 100), 2)).toFixed(2)
             : '';
         }
