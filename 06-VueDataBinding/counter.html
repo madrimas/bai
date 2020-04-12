@@ -5,18 +5,17 @@
 </head>
 <body>
   <div id="app">
-    <span>Your name:</span>
-    <input type="text" v-model.lazy="name">  
+    <button v-on:click="add" value="add">{{counter}}</button>
   </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        name: ''
+        counter: 0,
       },
-      watch: {
-        name: function (){
-          console.log(this.name);
+      methods: {
+        add: function (){
+          this.counter += 1;
         }
       }
     });

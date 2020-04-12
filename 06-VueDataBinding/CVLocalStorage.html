@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <span>Imię:</span>
+    <input type="text" v-model.lazy="name"> <br>
+
+    <span>Nazwisko:</span>
+    <input type="text" v-model.lazy="surname"> <br>       
+    
+    <span>Wiek:</span>
+    <input @keypress="onlyNumber" type="number" v-model.number="age"> <br>    
+
+    <span>Płeć:</span>
+    <input type="radio" id="male" value="male" v-model="gender">
+    <label for="male">Mężczyzna</label>
+    <input type="radio" id="female" value="female" v-model="gender">
+    <label for="female">Kobieta</label> <br>
+
+    <span>Wykształcenie:</span>
+    <select v-model="education">
+      <option disabled value="">Wybierz:</option>
+      <option>brak</option>
+      <option>podstawowe</option>
+      <option>średnie</option>
+      <option>wyższe</option>
+    </select>
+    <br>
+
+    <span>Umiejętności:</span> <br>
+    <input type="checkbox" id="pc" value="pc" v-model="skills">
+    <label for="pc">obsługa komputera</label> <br>
+
+    <input type="checkbox" id="driverLicense" value="driverLicense" v-model="skills">
+    <label for="driverLicense">prawo jazdy</label> <br>
+
+    <input type="checkbox" id="creativity" value="creativity" v-model="skills">
+    <label for="creativity">kreatywność</label> <br>
+
+    <input type="checkbox" id="groupWork" value="groupWork" v-model="skills">
+    <label for="groupWork">praca w zespole</label> <br> <br>
+
+    <button v-on:click="save" value="Save">Zapisz</button>
+    <button v-on:click="read" value="Read">Czytaj</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        surname: '',
+        age: null,
+        gender: '',
+        education: '',
+        skills: []
+      },
+      methods: {
+        onlyNumber($event) {
+          let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+          if (keyCode < 48 || keyCode > 57) {
+            $event.preventDefault();
+          }
+        },
+        save: function () {
+          localStorage.setItem('name', this.name);
+          localStorage.setItem('surname', this.surname);
+          localStorage.setItem('age', this.age);
+          localStorage.setItem('gender', this.gender);
+          localStorage.setItem('education', this.education);
+          localStorage.setItem('skills', JSON.stringify(this.skills));
+        },
+        read: function () {
+          this.name = localStorage.getItem('name');
+          this.surname = localStorage.getItem('surname');
+          this.age = localStorage.getItem('age');
+          this.gender = localStorage.getItem('gender');
+          this.education = localStorage.getItem('education');
+          this.skills = JSON.parse(localStorage.getItem('skills'));
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
