@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <decimal-to-binary :decimal=8></decimal-to-binary>
+    <decimal-to-binary :decimal=170></decimal-to-binary>
+    <decimal-to-binary :decimal=204></decimal-to-binary>
+    <decimal-to-binary :decimal=3855></decimal-to-binary>
+  </div>
+
+  <script type="text/x-template" id="decimal-to-binary-template">
+    <div>
+      <p>{{ decimal }}(10) = {{ binary }}(2)</p>
+    </div>
+  </script>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

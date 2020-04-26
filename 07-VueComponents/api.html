@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <currency-api code="USD"></currency-api>
+        <currency-api code="GBP"></currency-api>
+        <currency-api code="EUR"></currency-api>
+    </div>
+
+    <script type="text/x-template" id="currency-api-template">
+        <div>
+          <p>
+            Waluta: {{currency.currency}} <br> 
+            Kod waluty: {{currency.code}} <br> 
+            Kupno: {{currency.bid}} <br> 
+            Sprzedaż: {{currency.ask}} <br>
+          </p>
+        </div>
+      </script>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

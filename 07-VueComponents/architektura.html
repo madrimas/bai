@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <von-neumann-architecture></von-neumann-architecture>
+  </div>
+
+  <script type="text/x-template" id="von-neumann-architecture-template">
+    <div>
+      <h1>{{ title }}</h1>
+      <p v-for="component in architectureComponents">- {{ component }}</p>
+      <br>
+    </div>
+  </script>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

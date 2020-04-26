@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .center {
+      text-align: center;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+</head>
+
+<body>
+  <div id="app">
+    <chart-component :numbers="[221, 644, 346, 453, 534, -111]"></chart-component>
+  </div>
+
+  <script type="text/x-template" id="chart-template">
+    <div class="chart-box">
+      <h2 class="center">Numbers chart</h2>
+      <canvas id="numbers-chart"></canvas>
+    </div>
+  </script>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

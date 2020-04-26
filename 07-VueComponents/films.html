@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <first-favourite-film></first-favourite-film>
+    <second-favourite-film></second-favourite-film>
+    <third-favourite-film></third-favourite-film>
+  </div>
+
+  <script type="text/x-template" id="favourite-film-template">
+    <div>
+      <h1>{{ title }}</h1>
+      <p>Reżyseria: {{ director }}</p>
+      <p>Rok produkcji: {{ year }}</p>
+      <br>
+    </div>
+  </script>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

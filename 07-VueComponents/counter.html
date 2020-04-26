@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <counter-add-subtract></counter-add-subtract>
+    </div>
+
+    <script type="text/x-template" id="counter-add-subtract-template">
+        <div>
+          <p>Stan licznika: {{count}}</p>
+          <button @click="count++">Dodaj</button>
+          <button @click="count--">Odejmij</button>
+        </div>
+      </script>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
